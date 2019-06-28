@@ -26,3 +26,10 @@ Route::middleware('admin')->group(function () {
         'except' => 'show'
     ]);
 });
+
+Route::middleware('auth','verified')->group(function () {
+
+    Route::resource('music', 'MusicController', [
+        'only' => ['create', 'store', 'destroy', 'update']
+    ]);
+});
