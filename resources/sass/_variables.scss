@@ -5,6 +5,10 @@ body {
   padding-top: 70px;
 }
 
+$custom-file-text: (
+  fr: "Parcourir"
+);
+
 // Card
 $card-border-width: 4px;
 $card-border-radius: .3rem;
@@ -27,6 +31,3 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
-.custom-file-label::after {
-  content: "Parcourir";
-}

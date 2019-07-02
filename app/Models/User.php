@@ -37,9 +37,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function musics()
+    public function images()
     {
-        return $this->hasMany(Music::class);
+        return $this->hasMany(Image::class);
     }
 
     public function getAdminAttribute()

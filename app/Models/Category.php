@@ -15,8 +15,8 @@ class Category extends Model
         'saving' => NameSaving::class,
     ];
 
-    public function musics()
+    public function images()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Image::class);
     }
 }

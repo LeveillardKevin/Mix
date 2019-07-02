@@ -13,19 +13,19 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
        Category::create([
-           'name' => 'Hardcore'
+           'name' => 'Paysages'
        ]);
         Category::create([
-            'name' => 'Trance'
+            'name' => 'Maisons'
         ]);
         Category::create([
-            'name' => 'Acidcore'
+            'name' => 'Personnages'
         ]);
         Category::create([
-            'name' => 'Techno'
+            'name' => 'Animaux'
         ]);
         Category::create([
-            'name' => 'Hardstyle'
+            'name' => 'Végétation'
         ]);
     }
 }
