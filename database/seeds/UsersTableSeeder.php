@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'durand@chezlui.fr',
             'role' => 'admin',
             'password' => bcrypt('admin'),
+            'settings' => '{"pagination": 8}',
             'email_verified_at' => Carbon::now(),
         ]);
 
@@ -25,6 +26,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Dupont',
             'email' => 'dupont@chezlui.fr',
             'password' => bcrypt('admin'),
+            'settings' => '{"pagination": 8}',
             'email_verified_at' => Carbon::now(),
         ]);
 
@@ -32,6 +34,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Martin',
             'email' => 'martin@chezlui.fr',
             'password' => bcrypt('admin'),
+            'settings' => '{"pagination": 8}',
             'email_verified_at' => Carbon::now(),
         ]);
     }

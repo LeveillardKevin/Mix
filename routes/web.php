@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('admin')->group(function () {
 
@@ -29,7 +29,7 @@ Route::middleware('admin')->group(function () {
 
 Route::middleware('auth','verified')->group(function () {
 
-    Route::resource('image', 'ImageController', [
+    Route::resource('music', 'MusicController', [
         'only' => ['create', 'store', 'destroy', 'update']
     ]);
 });

@@ -9,3 +9,35 @@
 
 // SweetAlert
 @import '~sweetalert2/src/sweetalert2.scss';
+
+// Magnific popup
+@import '~magnific-popup/dist/magnific-popup.css';
+
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(lg) {
+    column-count: 3;
+  }
+  @include media-breakpoint-only(xl) {
+    column-count: 4;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+.site-wrapper {
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "center";
+}
+
+.site-wrappaer-inner {
+  grid-area: center;
+  align-self: center;
+}
