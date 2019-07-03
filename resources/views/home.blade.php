@@ -32,7 +32,7 @@
                     </a>
                     <div class="card-footer text-muted">
                         <em>
-                            <a href="#" data-toggle="tooltip" title="{{ __('Voir les musics de '). $music->user->name }}">
+                            <a href="{{ route('user', $music->user->id) }}" data-toggle="tooltip" title="{{ __('Voir les musics de '). $music->user->name }}">
                                 {{ $music->user->name }}
                             </a>
                         </em>

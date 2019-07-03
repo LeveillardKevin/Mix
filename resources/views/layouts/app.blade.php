@@ -17,6 +17,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle @isset($category){{ currentRoute(route('category', $category->slug)) }} @endisset" href="#" id="navbarDropdownCat" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @lang('Catégories')
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownGestCat">
+                    @foreach($categories as $category)
+                        <a class="dropdown-item" href="{{ route('category', $category->slug) }}">{{ $category->name }}</a>
+                    @endforeach
+                </div>
+            </li>
             @admin
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle{{ currentRoute(

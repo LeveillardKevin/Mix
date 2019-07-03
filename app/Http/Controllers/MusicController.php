@@ -2,16 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Repositories\MusicRepository;
+use App\Models\User;
 
 class MusicController extends Controller
 {
     protected $repository;
 
-    public function __construct(MusicRepository $repository)
+    protected $categoryRepository;
+
+
+    public function __construct(MusicRepository $repository, CategoryRepository $categoryRepository)
     {
+        $this->categoryRepository = $categoryRepository;
         $this->repository = $repository;
+    }
+
+    public function user(User $user)
+    {
+        $musics = $this->musicRepository->getMusicForUser($user->id);
+        return view('home', compact('user','musics'));
+
+    }
+
+    public function category($slug)
+    {
+        $category = $this->categoryRepository->getBySlug($slug);
+        $musics = $this->musicRepository->getMusicsForCategory($slug);
+
+        return view('home', compact('category', 'musics'));
     }
 
     /**

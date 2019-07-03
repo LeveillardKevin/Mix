@@ -23,5 +23,18 @@ class MusicRepository
         return Music::latestWithUser()->paginate(config('app.pagination'));
     }
 
+    public function getMusicsForCategory($slug)
+    {
+        return Music::latestWithUser()->whereHas('category', function ($query) use($slug) {
+            $query->whereSlug($slug);
+        })->paginate(config('app.pagination'));
+    }
+
+    public function getMusicForUser($id)
+    {
+        return Music::latestWithUser()->whereHas('user', function ($query) use ($id) {
+            $query->whereId($id);
+        })->paginate(config('app.pagination'));
+    }
 
 }

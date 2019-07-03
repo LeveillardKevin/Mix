@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::middleware('admin')->group(function () {
 
@@ -33,3 +33,7 @@ Route::middleware('auth','verified')->group(function () {
         'only' => ['create', 'store', 'destroy', 'update']
     ]);
 });
+
+Route::name('category')->get('category/{slug}', 'MusicController@category');
+
+Route::name('user')->get('user/{user}', 'MusicController@user');
