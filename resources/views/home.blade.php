@@ -41,6 +41,29 @@
                                 {{ $music->created_at->formatLocalized('%x') }}
                             </em>
                         </div>
+
+                        <div class="star-rating" id="{{ $music->id }}">
+                            <span class="pull-right">
+                                <a class="toggleIcons" href="#">
+                                    <i class="fa fa-cog"></i>
+                                </a>
+                                <span class="menuIcons" style="display: none">
+                                    <a class="form-delete text-danger" href="{{ route('music.destroy', $music->id) }}" data-toggle="tooltip" title="@lang('Supprimer cette music')">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                    <a class="description-manage" href="#" data-toggle="tooltip" title="@lang('Gérer l\'artiste')">
+                                        <i class="fa fa-comment"></i>
+                                    </a>
+                                    <a class="category-edit" data-id="{{ $music->category_id }}" href="{{ route('music.update', $music->id) }}" data-toggle="tooltip" title="@lang('Changer la catégorie')">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </span>
+                                <form action="{{ route('music.destroy', $music->id) }}" method="POST" class="hide">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </span>
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -49,11 +72,40 @@
             {{ $musics->links() }}
         </div>
     </main>
+
 @endsection
 
 @section('script')
     <script>
         $(() => {
+
+            $.ajaxSetup({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+            })
+
+
+            $('a.toggleIcons').click((e) => {
+                e.preventDefault();
+                let that = $(e.currentTarget)
+                that.next().toggle('slow').end().children().toggleClass('fa-cog').toggleClass('fa-play')
+            })
+
+            $('a.form-delete').click((e) => {
+                e.preventDefault();
+                let href = $(e.currentTarget).attr('href')
+                swal.fire ({
+                    title: '@lang('Vraiment supprimer cette music ?')',
+                    type: 'error',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: '@lang('Oui')',
+                    cancelButtonText: '@lang('Non')'
+                }).then((result) => {
+                    if (result.value) {
+                        $("form[action='" + href + "'").submit()
+                    }
+                })
+            })
 
             $('.site-wrapper').fadeOut(1000)
 

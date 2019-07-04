@@ -6,6 +6,7 @@ use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Repositories\MusicRepository;
 use App\Models\User;
+use App\Models\Music;
 
 class MusicController extends Controller
 {
@@ -22,7 +23,7 @@ class MusicController extends Controller
 
     public function user(User $user)
     {
-        $musics = $this->musicRepository->getMusicForUser($user->id);
+        $musics = $this->repository->getMusicForUser($user->id);
         return view('home', compact('user','musics'));
 
     }
@@ -114,8 +115,10 @@ class MusicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Music $music)
     {
-        //
+        $this->authorize('manage', $music);
+        $music->delete();
+        return back();
     }
 }

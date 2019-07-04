@@ -13279,8 +13279,17 @@ body {
   grid-template-areas: "center";
 }
 
-.site-wrappaer-inner {
+.site-wrapper-inner {
   grid-area: center;
   align-self: center;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.star-rating {
+  direction: rtl;
+  display: block;
 }
 
